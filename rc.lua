@@ -10,7 +10,6 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
-local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -247,8 +246,6 @@ awful.screen.connect_for_each_screen(function(s)
             textbox_separator,
             mytextclock,
             textbox_separator,
-            volume_widget(),
-            textbox_separator,
             s.mylayoutbox,
         },
     }
@@ -262,6 +259,20 @@ root.buttons(gears.table.join(
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
+
+local function get_volume()
+    os.execute("pactl get-sink-volume @DEFAULT_SINK@ > /tmp/gambiarra-volume.txt")
+
+    file = io.open("/tmp/gambiarra-volume.txt", "r")
+    output = file:read()
+    file:close()
+
+    naughty.notify({ preset = naughty.config.presets.low,
+        timeout = 2,
+        title = "Volume",
+        text = output })
+end
+
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
@@ -324,8 +335,14 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%") end),
-    awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%") end),
+    awful.key({ }, "XF86AudioRaiseVolume",    function ()
+        awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")
+        get_volume()
+    end),
+    awful.key({ }, "XF86AudioLowerVolume",    function ()
+        awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")
+        get_volume()
+    end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
