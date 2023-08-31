@@ -150,6 +150,13 @@ mytextclock:connect_signal("button::press",
         if button == 1 then cw.toggle() end
     end)
 
+textbox_separator = wibox.widget {
+    widget = wibox.widget.separator,
+    orientation = "vertical",
+    forced_width = 10,
+    color = "#333333",
+}
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -252,9 +259,12 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
-            volume_widget(),
             wibox.widget.systray(),
+            textbox_separator,
             mytextclock,
+            textbox_separator,
+            volume_widget(),
+            textbox_separator,
             s.mylayoutbox,
         },
     }
