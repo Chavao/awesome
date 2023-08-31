@@ -10,6 +10,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -235,6 +236,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
+            volume_widget(),
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
