@@ -262,9 +262,10 @@ root.buttons(gears.table.join(
 -- }}}
 
 local function get_volume()
-    os.execute("pactl get-sink-volume @DEFAULT_SINK@ > /tmp/gambiarra-volume.txt")
+    local tmp_path = "/tmp/awesome-tmp-volume.txt"
+    os.execute("pactl get-sink-volume @DEFAULT_SINK@ > "..tmp_path)
 
-    file = io.open("/tmp/gambiarra-volume.txt", "r")
+    file = io.open(tmp_path, "r")
     output = file:read()
     file:close()
 
