@@ -254,9 +254,9 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
-local function get_volume()
-    local tmp_path = "/tmp/awesome-tmp-volume.txt"
-    os.execute("pactl get-sink-volume @DEFAULT_SINK@ > "..tmp_path)
+local function get_volume_info(cmd)
+    local tmp_path = "/tmp/awesome-tmp-"..cmd..".txt"
+    os.execute("pactl get-sink-"..cmd.." @DEFAULT_SINK@ > "..tmp_path)
 
     file = io.open(tmp_path, "r")
     output = file:read()
@@ -268,19 +268,9 @@ local function get_volume()
         text = output })
 end
 
-local function get_mute_status()
-    local tmp_path = "/tmp/awesome-tmp-mute-toggle.txt"
-    os.execute("pactl get-sink-mute @DEFAULT_SINK@ > "..tmp_path)
+local function get_volume() get_volume_info("volume") end
 
-    file = io.open(tmp_path, "r")
-    output = file:read()
-    file:close()
-
-    naughty.notify({ preset = naughty.config.presets.low,
-        timeout = 2,
-        title = "Volume",
-        text = output })
-end
+local function get_mute_status() get_volume_info("mute") end
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
