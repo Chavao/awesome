@@ -268,6 +268,19 @@ local function get_volume()
         text = output })
 end
 
+local function get_mute_status()
+    local tmp_path = "/tmp/awesome-tmp-mute-toggle.txt"
+    os.execute("pactl get-sink-mute @DEFAULT_SINK@ > "..tmp_path)
+
+    file = io.open(tmp_path, "r")
+    output = file:read()
+    file:close()
+
+    naughty.notify({ preset = naughty.config.presets.low,
+        timeout = 2,
+        title = "Volume",
+        text = output })
+end
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
@@ -336,6 +349,10 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioLowerVolume",    function ()
         awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")
         get_volume()
+    end),
+    awful.key({ }, "XF86AudioMute",    function ()
+        awful.util.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
+        get_mute_status()
     end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
