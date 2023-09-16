@@ -326,7 +326,7 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "e", function () awful.spawn(explorer) end,
               {description = "open a explorer", group = "launcher"}),
-    awful.key({ modkey,           }, "a", function () awful.spawn(whereismymouse) end,
+    awful.key({ modkey, "Shift"   }, "a", function () awful.spawn(whereismymouse) end,
               {description = "recover my mouse", group = "launcher"}),
     awful.key({ modkey,           }, "b", function () awful.spawn(flameshot) end,
               {description = "open screenshot tool", group = "launcher"}),
