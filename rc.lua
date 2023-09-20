@@ -272,11 +272,6 @@ local function get_volume() get_volume_info("volume") end
 
 local function get_mute_status() get_volume_info("mute") end
 
-local function position(pos)
-    local c = awful.client.restore()
-    awful.placement.align(c, {position = pos})
-end
-
 -- {{{ Key bindings
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
@@ -371,14 +366,6 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
 
-    awful.key({ modkey, "Shift"   }, "Right", function () position('right') end,
-              {description = "align floating client to right", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "Left", function () position('left') end,
-              {description = "align floating client to left", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "Up", function () position('top') end,
-              {description = "align floating client to top", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "Down", function () position('bottom') end,
-              {description = "align floating client to bottom", group = "layout"}),
 
     awful.key({ modkey, "Control" }, "n",
               function ()
@@ -452,7 +439,15 @@ clientkeys = gears.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
         end ,
-        {description = "(un)maximize horizontally", group = "client"})
+        {description = "(un)maximize horizontally", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "Right", function (c) c:relative_move(20, 0, 0, 0) end,
+              {description = "move floating client to right", group = "layout"}),
+    awful.key({ modkey, "Shift"   }, "Left", function (c) c:relative_move(-20, 0, 0, 0) end,
+              {description = "move floating client to left", group = "layout"}),
+    awful.key({ modkey, "Shift"   }, "Up", function (c) c:relative_move(0, -20, 0, 0) end,
+              {description = "move floating client to top", group = "layout"}),
+    awful.key({ modkey, "Shift"   }, "Down", function (c) c:relative_move(0, 20, 0, 0) end,
+              {description = "move floating client to bottom", group = "layout"})
 )
 
 -- Bind all key numbers to tags.
