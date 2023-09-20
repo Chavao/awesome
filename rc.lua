@@ -447,7 +447,15 @@ clientkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "Up", function (c) c:relative_move(0, -20, 0, 0) end,
               {description = "move floating client to top", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "Down", function (c) c:relative_move(0, 20, 0, 0) end,
-              {description = "move floating client to bottom", group = "layout"})
+              {description = "move floating client to bottom", group = "layout"}),
+    awful.key({ modkey, "Shift", "Control" }, "Right", function (c) c:relative_move(0, 0, 20, 0) end,
+              {description = "increase floating client width", group = "layout"}),
+    awful.key({ modkey, "Shift", "Control"   }, "Left", function (c) c:relative_move(0, 0, -20, 0) end,
+              {description = "decrease floating client width", group = "layout"}),
+    awful.key({ modkey, "Shift", "Control"   }, "Up", function (c) c:relative_move(0, 0, 0, -20) end,
+              {description = "decrease floating client height", group = "layout"}),
+    awful.key({ modkey, "Shift", "Control"   }, "Down", function (c) c:relative_move(0, 0, 0, 20) end,
+              {description = "increase floating client height", group = "layout"})
 )
 
 -- Bind all key numbers to tags.
