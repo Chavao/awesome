@@ -333,11 +333,11 @@ globalkeys = gears.table.join(
               {description = "quit awesome", group = "awesome"}),
 
     awful.key({ }, "XF86AudioRaiseVolume",    function ()
-        awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")
+        awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +1%")
         get_volume()
     end),
     awful.key({ }, "XF86AudioLowerVolume",    function ()
-        awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")
+        awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -1%")
         get_volume()
     end),
     awful.key({ }, "XF86AudioMute",    function ()
