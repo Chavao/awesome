@@ -440,6 +440,14 @@ clientkeys = gears.table.join(
             c:raise()
         end ,
         {description = "(un)maximize horizontally", group = "client"}),
+    awful.key({ modkey, "Shift", "Control"   }, "m",
+        function (c)
+            for _, c in ipairs(mouse.screen.selected_tag:clients()) do
+                c.maximized = true
+            end
+            c:raise()
+        end ,
+        {description = "maximize all clients", group = "client"}),
     awful.key({ modkey, "Shift"   }, "Right", function (c) c:relative_move(20, 0, 0, 0) end,
               {description = "move floating client to right", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "Left", function (c) c:relative_move(-20, 0, 0, 0) end,
