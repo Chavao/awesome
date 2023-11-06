@@ -398,8 +398,6 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"})
 )
 
-all_clients_maximized = false
-
 clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
         function (c)
@@ -444,9 +442,10 @@ clientkeys = gears.table.join(
         {description = "(un)maximize horizontally", group = "client"}),
     awful.key({ modkey, "Shift", "Control"   }, "m",
         function (c)
+            local all_clients_maximized = not c.all_clients_maximized
             for _, c in ipairs(mouse.screen.selected_tag:clients()) do
-                c.maximized = not c.all_clients_maximized
-                c.all_clients_maximized = not c.all_clients_maximized
+                c.maximized = all_clients_maximized
+                c.all_clients_maximized = all_clients_maximized
             end
             c:raise()
         end ,
