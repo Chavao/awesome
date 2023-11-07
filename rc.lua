@@ -265,7 +265,8 @@ local function get_volume_info(cmd)
     naughty.notify({ preset = naughty.config.presets.low,
         timeout = 2,
         title = "Volume",
-        text = output })
+        text = output,
+        screen = 2 })
 end
 
 local function get_volume() get_volume_info("volume") end
