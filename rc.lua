@@ -348,7 +348,7 @@ globalkeys = gears.table.join(
         get_mute_status()
     end),
     awful.key({ modkey,           }, "a", function ()
-        awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ 65%")
+        awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ 50%")
         get_volume()
     end),
 
