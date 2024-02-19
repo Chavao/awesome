@@ -348,6 +348,10 @@ globalkeys = gears.table.join(
         awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ 50%")
         get_volume()
     end),
+    awful.key({ modkey, "Shift"   }, "a", function ()
+        awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ 40%")
+        get_volume()
+    end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
