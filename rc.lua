@@ -56,7 +56,6 @@ beautiful.init(themes_path.."default/theme.lua")
 -- This is used later as the default terminal and editor to run.
 -- terminal = "x-terminal-emulator"
 terminal = "tilix"
-whereismymouse = "xdotool mousemove 683 384"
 flameshot = "flameshot gui"
 explorer = "pcmanfm-qt"
 editor = os.getenv("EDITOR") or "editor"
@@ -322,8 +321,6 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "e", function () awful.spawn(explorer) end,
               {description = "open a explorer", group = "launcher"}),
-    awful.key({ modkey, "Shift"   }, "a", function () awful.spawn(whereismymouse) end,
-              {description = "recover my mouse", group = "launcher"}),
     awful.key({ modkey,           }, "b", function () awful.spawn(flameshot) end,
               {description = "open screenshot tool", group = "launcher"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
