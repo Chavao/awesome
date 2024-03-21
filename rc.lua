@@ -332,6 +332,12 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
+    awful.key({ }, "XF86AudioNext",    function ()
+        awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+    end),
+    awful.key({ }, "XF86AudioPrev",    function ()
+        awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+    end),
     awful.key({ }, "XF86AudioRaiseVolume",    function ()
         awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +1%")
         get_volume()
