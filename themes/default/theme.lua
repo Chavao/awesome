@@ -102,6 +102,8 @@ local wallpapers = {
     themes_path.."default/wallpaper/ultrawide/bg_astral.png",
     themes_path.."default/wallpaper/ultrawide/bg_magical.jpeg",
     themes_path.."default/wallpaper/ultrawide/bg_spacer.jpg",
+    themes_path.."default/wallpaper/ultrawide/bg_raccoon.png",
+    themes_path.."default/wallpaper/ultrawide/bg_purple.png",
 }
 
 math.randomseed(os.time());
