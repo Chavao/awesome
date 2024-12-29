@@ -181,7 +181,18 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.centered(wallpaper, s, "#040509")
+
+        local laptop_wallpaper = beautiful.laptop_wallpaper
+        -- If laptop_wallpaper is a function, call it with the screen
+        if type(laptop_wallpaper) == "function" then
+            laptop_wallpaper = laptop_wallpaper(s)
+        end
+
+        if s.index == 1 then
+            gears.wallpaper.fit(laptop_wallpaper, s, "#06151A")
+        else
+            gears.wallpaper.centered(wallpaper, s, "#040509")
+        end
     end
 end
 

@@ -99,7 +99,6 @@ theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/m
 
 -- Wallpaper
 local wallpapers = {
-    themes_path.."default/wallpaper/ultrawide/bg_astral.png",
     themes_path.."default/wallpaper/ultrawide/bg_magical.jpeg",
     themes_path.."default/wallpaper/ultrawide/bg_spacer.jpg",
     themes_path.."default/wallpaper/ultrawide/bg_raccoon.png",
@@ -110,6 +109,15 @@ math.randomseed(os.time());
 local wallpaper = wallpapers[math.random(1, #wallpapers)]
 
 theme.wallpaper = wallpaper
+
+local laptop_wallpapers = {
+    themes_path.."default/wallpaper/bg_dtom.png",
+    themes_path.."default/wallpaper/bg_nerd.png",
+}
+
+local laptop_wallpaper = laptop_wallpapers[math.random(1, #laptop_wallpapers)]
+
+theme.laptop_wallpaper = laptop_wallpaper
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
