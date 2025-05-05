@@ -264,7 +264,14 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
+function sleep(n)  -- seconds
+    local t0 = os.clock()
+    while os.clock() - t0 <= n do
+    end
+end
+
 local function get_volume_info(cmd)
+    sleep(0.1)
     local tmp_path = "/tmp/awesome-tmp-"..cmd..".txt"
     os.execute("pactl get-sink-"..cmd.." @DEFAULT_SINK@ > "..tmp_path)
 
