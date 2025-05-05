@@ -58,6 +58,7 @@ beautiful.init(themes_path.."default/theme.lua")
 terminal = "tilix"
 flameshot = "flameshot gui"
 explorer = "pcmanfm-qt"
+pavucontrolqt = "pavucontrol-qt"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -345,6 +346,8 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "Return", function () awful.spawn(terminal .. " -p 'Big Screen'") end,
               {description = "open a terminal with profile Big Screen", group = "launcher"}),
+    awful.key({ modkey, "Control" }, "a", function () awful.spawn(pavucontrolqt) end,
+              {description = "open a volume controle", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
