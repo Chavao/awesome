@@ -59,6 +59,7 @@ terminal = "tilix"
 flameshot = "flameshot gui"
 explorer = "pcmanfm-qt"
 pavucontrolqt = "pavucontrol-qt"
+emoji = "gnome-characters"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -348,6 +349,8 @@ globalkeys = gears.table.join(
               {description = "open a terminal with profile Big Screen", group = "launcher"}),
     awful.key({ modkey, "Control" }, "a", function () awful.spawn(pavucontrolqt) end,
               {description = "open a volume controle", group = "launcher"}),
+    awful.key({ modkey, "Control", "Shift" }, "a", function () awful.spawn(emoji) end,
+              {description = "open gnome-characters", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
@@ -602,7 +605,8 @@ awful.rules.rules = {
                 "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                 "cola",
                 "MPlayer",
-                "calculator"
+                "calculator",
+                "Characters"
             },
 
             -- Note that the name property shown in xprop might be set slightly after creation of the client
