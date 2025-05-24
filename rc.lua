@@ -357,13 +357,13 @@ globalkeys = gears.table.join(
               {description = "quit awesome", group = "awesome"}),
 
     awful.key({ }, "XF86AudioPlay",    function ()
-        awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+        awful.util.spawn("playerctl -p ncspot play-pause")
     end),
     awful.key({ }, "XF86AudioNext",    function ()
-        awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+        awful.util.spawn("playerctl -p ncspot next")
     end),
     awful.key({ }, "XF86AudioPrev",    function ()
-        awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+        awful.util.spawn("playerctl -p ncspot previous")
     end),
     awful.key({ }, "XF86AudioRaiseVolume",    function ()
         awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +1%")
